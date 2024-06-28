@@ -69,6 +69,20 @@ public class DemoHeap{
         decreasekey(heap,index,Integer.MIN_VALUE);
         extract_min(heap);
     }
+    public static void arrtoheap(ArrayList<Integer> ans){
+        for(int i=(ans.size()-2)/2;i>=0;i--){
+            heapify(ans,i,ans.size()-1);
+        }
+    }
+    public static void heapsort( ArrayList<Integer> ll, ArrayList<Integer> ans){
+        int a=ll.size();
+        for(int i=0;i<a;i++){
+            extract_min(ll);
+            ans.add(ll.get(ll.size()-1));
+            ll.remove(ll.size()-1);
+        }
+    }
+
     public static void main(String[] args) {
         ArrayList<Integer> heap=new ArrayList<>();
         // insert(heap,10);
