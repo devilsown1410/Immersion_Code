@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class Solution
+class powerset
 {
     public List<String> AllPossibleStrings(String s)
     {

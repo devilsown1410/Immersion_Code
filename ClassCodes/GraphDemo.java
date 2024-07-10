@@ -23,9 +23,10 @@ public class GraphDemo {
 
          ArrayList<ArrayList<Integer>> graph=new ArrayList<>();
          createAdjList(graph, n, edges);
+        System.out.println(shortpath(graph,6));
 //         bfs_All(graph);
 
-        dfs_All(graph);
+//        dfs_All(graph);
 //        int matrix[][]=n
 //        ew int[n][n];
 //        createAdjMatrix(matrix, m, edges);
@@ -107,6 +108,35 @@ public class GraphDemo {
             }
         }
     }
+    public static int shortest(int start,int end,ArrayList<ArrayList<Integer>> graph,boolean vst[],int c){
+        if(start==end){
+            return c;
+        }
+        vst[start]=true;
+        int minlength=Integer.MAX_VALUE;
+        for(int i:graph.get(start)){
+            if(!vst[i]){
+                int p=shortest(i,end,graph,vst,c+1);
+                if(p!=-1){
+                    minlength=Math.min(minlength,p);
+                }
+            }
+        }
+        vst[start]=false;
+        return minlength==Integer.MAX_VALUE ?-1:minlength;
+    }
+    public static int shortpath(ArrayList<ArrayList<Integer>> graph,int end){
+        int ans=Integer.MAX_VALUE;
+        for (int i = 0; i < graph.size(); i++) {
+            boolean vst[]=new boolean[graph.size()];
+            int p=shortest(i,end,graph,vst,2);
+            if(p!=-1){
+                ans=Math.min(ans,p);
+            }
+        }
+        return ans==Integer.MAX_VALUE?-1:ans;
+    }
+
 
 
 

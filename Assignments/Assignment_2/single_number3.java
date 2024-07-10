@@ -1,4 +1,4 @@
-class Solution {
+class single_number3 {
     public int[] singleNumber(int[] nums) {
         int xor=0;
         for(int i:nums){

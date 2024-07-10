@@ -1,3 +1,5 @@
+package ClassCodes;
+
 import java.util.*;
 class Student implements Comparable<Student>{
 String name;
