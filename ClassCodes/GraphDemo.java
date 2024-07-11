@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class GraphDemo {
     public static void main(String[] args) throws IOException {
@@ -23,7 +24,8 @@ public class GraphDemo {
 
          ArrayList<ArrayList<Integer>> graph=new ArrayList<>();
          createAdjList(graph, n, edges);
-        System.out.println(shortpath(graph,6));
+         dfs_All(graph);
+//        System.out.println(shortpath(graph,6));
 //         bfs_All(graph);
 
 //        dfs_All(graph);
@@ -47,7 +49,7 @@ public class GraphDemo {
             int u = edge[0];
             int v = edge[1];
             graph.get(u).add(v);
-            graph.get(v).add(u);
+//            graph.get(v).add(u);
         }
         System.out.println(graph);
     }
@@ -88,25 +90,30 @@ public class GraphDemo {
                 }
             }
         }
+
     }
-    public static void dfs(ArrayList<ArrayList<Integer>> graph,int s,boolean visited[]){
+    public static void dfs(ArrayList<ArrayList<Integer>> graph,int s,boolean visited[],Stack<Integer> st){
         visited[s]=true;
-        System.out.println(s);
+//        System.out.println(s);
         ArrayList<Integer> nbr_list=graph.get(s);
         for(int nbr:nbr_list){
             if(!visited[nbr]){
-                dfs(graph,nbr,visited);
+                dfs(graph,nbr,visited,st);
             }
+
         }
+        st.push(s);
     }
     public static void dfs_All(ArrayList<ArrayList<Integer>> graph){
         int V=graph.size();
+        Stack<Integer> st=new Stack<>();
         boolean visited[]=new boolean[graph.size()];
         for(int i=0;i<V;++i){
             if(!visited[i]){
-                dfs(graph,i,visited);
+                dfs(graph,i,visited,st);
             }
         }
+        System.out.println(st);
     }
     public static int shortest(int start,int end,ArrayList<ArrayList<Integer>> graph,boolean vst[],int c){
         if(start==end){
