@@ -46,7 +46,7 @@ class GFG {
 
             int[][] edges = IntMatrix.input(br, e, 2);
 
-            Solution obj = new Solution();
+            Dijkstra obj = new Dijkstra();
             int res = obj.findNumberOfGoodComponent(e, v, edges);
 
             System.out.println(res);
